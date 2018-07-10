@@ -10,15 +10,14 @@ namespace BaiduMap.Util
     {
         public static string CaculateAKSN(string ak, string sk, string url, IDictionary<string, string> dictionary)
         {
+            // ak 必须是 dictionary中的最后一个参数
             if (dictionary.ContainsKey("ak"))
             {
-                dictionary["ak"] = ak;
-            } 
-            else 
-            {
-                dictionary.Add("ak", ak);
+                dictionary.Remove("ak");
             }
+            dictionary.Add("ak", ak);
 
+            // 计算sn时 dictionary不能有 sn
             if (dictionary.ContainsKey("sn"))
             {
                 dictionary.Remove("sn");
