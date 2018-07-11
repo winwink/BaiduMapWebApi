@@ -6,7 +6,7 @@ using BaiduMap.Util;
 
 namespace BaiduMap.Request
 {
-    public abstract class BaiduRequest<T, S> 
+    public abstract class BaiduRequest<T, S> : IBaiduRequest<T>
         where T: BaiduResponse 
         where S: BaiduModel
     {

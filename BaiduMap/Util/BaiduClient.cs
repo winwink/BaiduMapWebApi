@@ -3,6 +3,7 @@ using BaiduMap.Response;
 using System.Net.Http;
 using Newtonsoft.Json;
 using BaiduMap.Request.Models;
+using System.Threading.Tasks;
 
 namespace BaiduMap.Util
 {
@@ -39,11 +40,16 @@ namespace BaiduMap.Util
         /// <typeparam name="S"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        public T Execute<T, S>(BaiduRequest<T, S> request)
+        public T Execute<T>(IBaiduRequest<T> request)
             where T : BaiduResponse
-            where S : BaiduModel
         {
             return string.IsNullOrWhiteSpace(Sk) ? AkExeucte(request) : SNExecute(request);
+        }
+
+        public Task<T> ExecuteAsync<T>(IBaiduRequest<T> request)
+            where T: BaiduResponse
+        {
+            return Task.Run(() => Execute(request));
         }
 
         /// <summary>
@@ -53,9 +59,8 @@ namespace BaiduMap.Util
         /// <typeparam name="S"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        private T AkExeucte<T, S>(BaiduRequest<T, S> request)
+        private T AkExeucte<T>(IBaiduRequest<T> request)
             where T : BaiduResponse
-            where S : BaiduModel
         {
             var dictionary = request.GetParameters();
             dictionary.Add("ak", Ak);
@@ -71,9 +76,8 @@ namespace BaiduMap.Util
         /// <typeparam name="S"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        private T SNExecute<T, S>(BaiduRequest<T, S> request)
+        private T SNExecute<T>(IBaiduRequest<T> request)
             where T : BaiduResponse
-            where S : BaiduModel
         {
             var dictionary = request.GetParameters();
             var sn = AKSNCaculator.CaculateAKSN(Ak, Sk, request.Address, dictionary);
