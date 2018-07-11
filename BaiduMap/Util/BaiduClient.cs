@@ -43,9 +43,16 @@ namespace BaiduMap.Util
         public T Execute<T>(IBaiduRequest<T> request)
             where T : BaiduResponse
         {
-            return string.IsNullOrWhiteSpace(Sk) ? AkExeucte(request) : SNExecute(request);
+            var queryString = BuildQueryString(request);
+            return GetResponse<T>(request.Host, request.Address, queryString);
         }
 
+        /// <summary>
+        /// 异步调用接口
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public Task<T> ExecuteAsync<T>(IBaiduRequest<T> request)
             where T: BaiduResponse
         {
@@ -53,38 +60,42 @@ namespace BaiduMap.Util
         }
 
         /// <summary>
-        /// IP白名单方式
+        /// 返回字符串
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <typeparam name="S"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        private T AkExeucte<T>(IBaiduRequest<T> request)
-            where T : BaiduResponse
+        public string ExecuteReadString<T>(IBaiduRequest<T> request)
+            where T: BaiduResponse
         {
-            var dictionary = request.GetParameters();
-            dictionary.Add("ak", Ak);
-            var queryString = UrlUtil.BuildQuery(dictionary);
-
-            return GetRequest<T>(request.Host, request.Address, queryString);
+            var queryString = BuildQueryString(request);
+            return GetResponseString(request.Host, request.Address, queryString);
         }
 
         /// <summary>
-        /// SN验证方式
+        /// 异步调用返回字符串
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <typeparam name="S"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        private T SNExecute<T>(IBaiduRequest<T> request)
-            where T : BaiduResponse
+        public Task<string> ExecuteReadStringAsync<T>(IBaiduRequest<T> request)
+            where T: BaiduResponse
         {
-            var dictionary = request.GetParameters();
-            var sn = AKSNCaculator.CaculateAKSN(Ak, Sk, request.Address, dictionary);
-            dictionary.Add("sn", sn);
-            var queryString = UrlUtil.BuildQuery(dictionary);
-
-            return GetRequest<T>(request.Host, request.Address, queryString);
+            return Task.Run(() => ExecuteReadString(request));
+        }
+        
+        /// <summary>
+        /// 获取返回结果字符串
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="address"></param>
+        /// <param name="queryString"></param>
+        /// <returns></returns>
+        private string GetResponseString(string host, string address, string queryString)
+        {
+            var url = host + address + "?" + queryString;
+            var client = new HttpClient();
+            return client.GetStringAsync(url).Result;
         }
 
         /// <summary>
@@ -95,13 +106,52 @@ namespace BaiduMap.Util
         /// <param name="address"></param>
         /// <param name="queryString"></param>
         /// <returns></returns>
-        private static T GetRequest<T>(string host, string address, string queryString)
+        private T GetResponse<T>(string host, string address, string queryString)
             where T : BaiduResponse
         {
-            var url = host + address + "?" + queryString;
-            var client = new HttpClient();
-            var result = client.GetStringAsync(url).Result;
+            var result = GetResponseString(host, address, queryString);
             return JsonConvert.DeserializeObject<T>(result);
+        }
+
+        /// <summary>
+        /// 构建查询字符串
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        private string BuildQueryString<T>(IBaiduRequest<T> request)
+            where T: BaiduResponse
+        {
+            return string.IsNullOrWhiteSpace(Sk) ? BuildAkQueryString(request) : BuildSNQueryString(request);
+        }
+
+        /// <summary>
+        /// 构建AK查询字符串
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        private string BuildAkQueryString<T>(IBaiduRequest<T> request)
+            where T : BaiduResponse
+        {
+            var dictionary = request.GetParameters();
+            dictionary.Add("ak", Ak);
+            return UrlUtil.BuildQuery(dictionary);
+        }
+
+        /// <summary>
+        /// 构建SN查询字符串
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        private string BuildSNQueryString<T>(IBaiduRequest<T> request)
+            where T : BaiduResponse
+        {
+            var dictionary = request.GetParameters();
+            var sn = AKSNCaculator.CaculateAKSN(Ak, Sk, request.Address, dictionary);
+            dictionary.Add("sn", sn);
+            return UrlUtil.BuildQuery(dictionary);
         }
     }
 }

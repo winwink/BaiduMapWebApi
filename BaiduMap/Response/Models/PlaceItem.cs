@@ -13,6 +13,7 @@ namespace BaiduMap.Response.Models
         public string City { get; set; }
         public string Area { get; set; }
         public string Street_Id { get; set; }
+        public string Telephone { get; set; }
         public int? Detail { get; set; }
         public string Uid { get; set; }
     }

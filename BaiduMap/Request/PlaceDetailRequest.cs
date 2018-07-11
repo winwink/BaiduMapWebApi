@@ -6,6 +6,9 @@ using System.Text;
 
 namespace BaiduMap.Request
 {
+    /// <summary>
+    /// 地点详情检索请求数据
+    /// </summary>
     public class PlaceDetailRequest : BaiduRequest<PlaceDetailResponse, PlaceDetailModel>
     {
         public PlaceDetailRequest(PlaceDetailModel model) : base(model)

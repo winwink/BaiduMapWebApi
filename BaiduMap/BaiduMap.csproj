@@ -10,12 +10,11 @@
     <Copyright>MIT</Copyright>
     <PackageLicenseUrl>https://github.com/Seamas/BaiduMapWebApi/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Seamas/BaiduMapWebApi.git</RepositoryUrl>
-    <PackageReleaseNotes>0.3.0 增加异步方法, 重构
-0.2.0 增加IP白名单验证方式
-0.1.0 初始版本，采用SN认证方式，包含地点检索接口</PackageReleaseNotes>
-    <AssemblyVersion>0.3.0.0</AssemblyVersion>
-    <FileVersion>0.3.0.0</FileVersion>
-    <Version>0.3.0</Version>
+    <PackageReleaseNotes>0.5.0 支持sn验证和ip白名单验证方式
+包含地点检索 和 地理编码接口</PackageReleaseNotes>
+    <AssemblyVersion>0.5.0.0</AssemblyVersion>
+    <FileVersion>0.5.0.0</FileVersion>
+    <Version>0.5.0</Version>
     <Company />
   </PropertyGroup>
 
