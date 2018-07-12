@@ -5,9 +5,9 @@ using System.Text;
 namespace BaiduMap.Response
 {
     /// <summary>
-    /// 地理编码查询响应数据
+    /// 地点输入提示响应数据
     /// </summary>
-    public class GeoCoderResponse: BaiduSingleResponse<Models.GeoDetailItem>
+    public class PlaceSuggestionResponse : BaiduListResultResponse<Models.PlaceSuggestionItem>
     {
     }
 }

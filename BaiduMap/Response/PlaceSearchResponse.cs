@@ -6,7 +6,7 @@ namespace BaiduMap.Response.Place
     /// <summary>
     /// 地点区域检索响应数据
     /// </summary>
-    public class PlaceSearchResponse : BaiduListResponse<PlaceItem>
+    public class PlaceSearchResponse : BaiduListResultsResponse<PlaceDetailItem>
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BaiduMap.Response
 {
-    public abstract class BaiduListResponse<T>: BaiduResponse
+    public abstract class BaiduListResultsResponse<T>: BaiduResponse
     {
         public int? Total { get; set; }
         public List<T> Results { get; set; }

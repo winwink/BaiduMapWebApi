@@ -8,7 +8,7 @@ namespace BaiduMap.Response
     /// <summary>
     /// 地点详情检索响应数据
     /// </summary>
-    public class PlaceDetailResponse : BaiduSingleResponse<PlaceItem>
+    public class PlaceDetailResponse : BaiduSingleResponse<PlaceDetailItem>
     {
     }
 }

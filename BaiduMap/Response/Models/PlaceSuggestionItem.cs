@@ -4,17 +4,15 @@ using System.Text;
 
 namespace BaiduMap.Response.Models
 {
-    public class PlaceItem
+    public class PlaceSuggestionItem
     {
         public string Name { get; set; }
         public Location Location { get; set; }
-        public string Address { get; set; }
+        public string Uid { get; set; }
         public string Province { get; set; }
         public string City { get; set; }
-        public string Area { get; set; }
-        public string Street_Id { get; set; }
-        public string Telephone { get; set; }
-        public int? Detail { get; set; }
-        public string Uid { get; set; }
+        public string District { get; set; }
+        public string Business { get; set; }
+        public string CityId { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BaiduMap.Response.Models
 {
-    public class GeoItem
+    public class GeoDetailItem
     {
         public Location Location { get; set; }
         public int Precise { get; set; }
