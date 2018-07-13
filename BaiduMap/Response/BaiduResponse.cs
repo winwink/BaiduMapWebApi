@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace BaiduMap.Response
@@ -7,5 +8,7 @@ namespace BaiduMap.Response
     {
         public int Status { get; set; }
         public string Message { get; set; }
+        [JsonIgnore]
+        public string Meta { get; set; }
     }
 }

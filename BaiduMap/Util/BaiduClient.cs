@@ -109,8 +109,10 @@ namespace BaiduMap.Util
         private T GetResponse<T>(string host, string address, string queryString)
             where T : BaiduResponse
         {
-            var result = GetResponseString(host, address, queryString);
-            return JsonConvert.DeserializeObject<T>(result);
+            var respString = GetResponseString(host, address, queryString);
+            var result = JsonConvert.DeserializeObject<T>(respString);
+            result.Meta = respString;
+            return result;
         }
 
         /// <summary>
