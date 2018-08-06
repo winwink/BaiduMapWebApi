@@ -27,12 +27,13 @@ private static readonly string sk = "";
 &lt;T extends BaiduResponse> T execute(IBaiduRequest&lt;T> request), 
 
 获取类型T，依赖于一个获取泛型类型的包
+
 &lt;dependency>
 
     <groupId>wang.seamas</groupId>
     <artifactId>reflect</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    
 &lt;/dependency>
 
 该包没有发布到maven中央仓库，项目地址为　https://github.com/Seamas/java-common.git，
