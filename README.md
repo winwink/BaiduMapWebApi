@@ -24,14 +24,16 @@ private static readonly string sk = "";
 ### wang.seamas.reflect依赖
 为了保持接口简洁与.NET版本一致，
 
-<T extends BaiduResponse> T execute(IBaiduRequest<T> request), 
+&lt;T extends BaiduResponse> T execute(IBaiduRequest&lt;T> request), 
 
 获取类型T，依赖于一个获取泛型类型的包
-<dependency>
+&lt;dependency>
+
     <groupId>wang.seamas</groupId>
     <artifactId>reflect</artifactId>
     <version>1.0-SNAPSHOT</version>
-</dependency>
+
+&lt;/dependency>
 
 该包没有发布到maven中央仓库，项目地址为　https://github.com/Seamas/java-common.git，
 下载后执行　mvn install
@@ -39,7 +41,7 @@ private static readonly string sk = "";
 
 如果不想依赖此包，请将　BaiduApiClient　类中的　execute 方法签名改为
 
-<T extends BaiduResponse> T execute(IBaiduRequest<T> request, Class<T> clazz)
+&lt;T extends BaiduResponse> T execute(IBaiduRequest&lt;T> request, Class&lt;T> clazz)
 
 并删除方法体中的这行代码
-Class<T> clazz = (Class<T>)ClassTreeUtil.findGenericParameterType(request.getClass(), IBaiduRequest.class, 0);
+Class&lt;T> clazz = (Class&lt;T>)ClassTreeUtil.findGenericParameterType(request.getClass(), IBaiduRequest.class, 0);
