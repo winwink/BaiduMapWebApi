@@ -42,7 +42,7 @@ private static readonly string sk = "";
 
 &lt;/dependency>
 
-该包没有发布到maven中央仓库，项目地址为　https://github.com/Seamas/java-common.git，
+该包没有发布到maven中央仓库，项目地址为　https://github.com/Seamas/java-common.git  
 下载后执行　
 
 mvn install
