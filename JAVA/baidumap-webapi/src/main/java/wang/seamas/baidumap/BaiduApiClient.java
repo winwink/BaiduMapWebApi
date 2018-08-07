@@ -54,7 +54,7 @@ public class BaiduApiClient {
         Class<T> clazz = (Class<T>)ClassTreeUtil.findGenericParameterType(request.getClass(), IBaiduRequest.class, 0);
         T result = null;
         try {
-            result = mapper.readValue(responseString, clazz);
+            result = mapper.readValue(responseString, clazz);            
         } catch (IOException e) {
             e.printStackTrace();
         }
