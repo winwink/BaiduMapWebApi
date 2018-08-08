@@ -8,13 +8,15 @@
 
 接口调用方法参见测试用例
 
-### 测试用例
-请在 <span>BaiduMapTest/ClientCreator.cs</span>
-填入自己申请的appkey 和 secretkey
-<br>
-private static readonly string ak = "";
-<br>
-private static readonly string sk = "";
+### 测试方法
+请在测试项目下添加 test.json 文件，并配置成拷贝到输出目录, ClientCreator 会读取配置文件, test.json 文件结构如下, ak和sk请自行填入
+
+{
+  "ak": "",
+  "sk": ""
+}
+
+
 
 接口根据构造client时传入的sk，自动选择调用方式
 
