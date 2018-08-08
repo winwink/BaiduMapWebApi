@@ -4,6 +4,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using BaiduMap.Request.Models;
 using System.Threading.Tasks;
+using System;
+using BaiduMap.Extensions;
 
 namespace BaiduMap.Util
 {
@@ -151,6 +153,15 @@ namespace BaiduMap.Util
             where T : BaiduResponse
         {
             var dictionary = request.GetParameters();
+            if (request.RequiredTimestamp)
+            {
+                // 用户未设置timestamp时自动增加，若已经设置timestamp，则使用用户设置的值
+                if (!dictionary.ContainsKey("timestamp"))
+                {
+                    dictionary.Add("timestamp", DateTime.Now.ToTimestamp().ToString());
+                }
+            }
+
             var sn = AKSNCaculator.CaculateAKSN(Ak, Sk, request.Address, dictionary);
             dictionary.Add("sn", sn);
             return UrlUtil.BuildQuery(dictionary);

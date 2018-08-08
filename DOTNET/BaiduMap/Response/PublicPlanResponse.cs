@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BaiduMap.Response
 {
-    public class PublicTransportResponse : BaiduSingleResponse<BaiduRouteItem>
+    public class PublicPlanResponse : BaiduSingleResponse<PublicPlanItem>
     {
     }
 }

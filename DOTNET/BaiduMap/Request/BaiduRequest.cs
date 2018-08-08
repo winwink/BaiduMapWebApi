@@ -14,6 +14,8 @@ namespace BaiduMap.Request
         public string Host { get; set; } = "http://api.map.baidu.com";
         public string Address { get; set; }
 
+        public bool RequiredTimestamp { get; protected set; } = false;
+
         public BaiduRequest(S model)
         {
             this.model = model;
@@ -23,5 +25,6 @@ namespace BaiduMap.Request
         {
             return DictionaryUtil.GetDictionary(model);
         }
+
     }
 }

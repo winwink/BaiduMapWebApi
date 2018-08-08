@@ -10,5 +10,6 @@ namespace BaiduMap.Request
         string Host { get; }
         string Address { get; }
         Dictionary<string, string> GetParameters();
+        bool RequiredTimestamp { get; }
     }
 }

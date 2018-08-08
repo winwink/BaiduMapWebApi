@@ -6,11 +6,14 @@ using System.Text;
 
 namespace BaiduMap.Request
 {
-    public class PublicTransportRequest : BaiduRequest<PublicTransportResponse, PublicTransportModel>
+    public class PublicPlanRequest : BaiduRequest<PublicPlanResponse, PublicPlanModel>
     {
-        public PublicTransportRequest(PublicTransportModel model) : base(model)
+        public PublicPlanRequest(PublicPlanModel model) : base(model)
         {
             this.Address = "/direction/v2/transit";
+
+            this.RequiredTimestamp = true;
         }
+
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BaiduMap.Response.Models
 {
-    public class BaiduRouteItem
+    public class PublicPlanItem
     {
         public City Origin { get; set; }
         public City Destination { get; set; }
