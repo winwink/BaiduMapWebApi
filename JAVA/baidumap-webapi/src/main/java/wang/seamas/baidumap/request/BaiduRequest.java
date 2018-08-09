@@ -17,10 +17,12 @@ public abstract class BaiduRequest<T extends BaiduResponse, S extends BaiduModel
     protected final S model;
     protected String host;
     protected String address;
+    protected Boolean requiredTimestamp;
 
     public BaiduRequest(S model) {
         this.model = model;
         this.host = "http://api.map.baidu.com";
+        this.requiredTimestamp = false;
     }
 
     @Override
@@ -43,4 +45,10 @@ public abstract class BaiduRequest<T extends BaiduResponse, S extends BaiduModel
         }
         return null;
     }
+
+    @Override
+    public Boolean getRequiredTimestamp() {
+        return requiredTimestamp;
+    }
+
 }

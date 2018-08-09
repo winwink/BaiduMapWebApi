@@ -14,7 +14,7 @@ namespace BaiduMap.Request.Models
         public string Coord_Type { get; set; }
         public int? Tactics_Incity { get; set; }
         public int? Tactics_Intercity { get; set; }
-        public int Trans_Type_Intercity { get; set; }
+        public int? Trans_Type_Intercity { get; set; }
         public string Ret_CoordType { get; set; }
         public int? Page_Size { get; set; }
         public int? Page_Index { get; set; }

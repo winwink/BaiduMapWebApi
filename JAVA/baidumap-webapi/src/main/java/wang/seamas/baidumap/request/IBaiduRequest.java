@@ -13,6 +13,7 @@ public interface IBaiduRequest<T extends BaiduResponse>  {
     String getHost();
     String getAddress();
     Map<String, String> getParameters();
+    Boolean getRequiredTimestamp();
 }
 
 

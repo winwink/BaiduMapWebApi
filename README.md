@@ -23,6 +23,10 @@
 
 用户在百度控制台创建应用时，选择对应的验证方式
 
+<strong>注意:
+单元测试仅使用了必须的字段，未对所有字段进行测试，可能会存在拼写错误，欢迎提issue和pull request
+</strong>
+
 ### 使用
 
 基于 NET Standard 2.0 开发，依赖于 Newtonsoft.Json（当前版本11.0.2）　

@@ -1,6 +1,7 @@
 package wang.seamas.baidumap;
 
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -40,6 +41,8 @@ public class BaiduApiClient {
     public BaiduApiClient(String ak, String sk) {
         this.ak = ak;
         this.sk = sk;
+        // 忽略java类中未定义的字段
+        //this.mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
     public <T extends BaiduResponse> T execute(IBaiduRequest<T> request) {
@@ -116,6 +119,13 @@ public class BaiduApiClient {
      */
     private <T extends BaiduResponse> String buildSnQueryString(IBaiduRequest<T> request) {
         Map<String, String> map = request.getParameters();
+
+        if (request.getRequiredTimestamp()) {
+            if (!map.containsKey(timeStampName)) {
+                map.put(timeStampName, String.valueOf(System.currentTimeMillis()/1000));
+            }
+        }
+
         String sn = null;
         try {
             sn = calculateSN(map, request.getAddress());
@@ -151,4 +161,5 @@ public class BaiduApiClient {
 
     private static final String akName = "ak";
     private static final String snName = "sn";
+    private static final String timeStampName = "timestamp";
 }

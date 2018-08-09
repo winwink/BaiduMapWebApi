@@ -13,9 +13,9 @@ public class PlaceSuggestionItem {
     private String uid;
     private String province;
     private String city;
+    private String district;
     private String business;
-    @JsonProperty("city_id")
-    private String cityId;
+    private String cityid;
 
     public String getName() {
         return name;
@@ -57,6 +57,14 @@ public class PlaceSuggestionItem {
         this.city = city;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
     public String getBusiness() {
         return business;
     }
@@ -65,11 +73,11 @@ public class PlaceSuggestionItem {
         this.business = business;
     }
 
-    public String getCityId() {
-        return cityId;
+    public String getCityid() {
+        return cityid;
     }
 
-    public void setCityId(String cityId) {
-        this.cityId = cityId;
+    public void setCityid(String cityid) {
+        this.cityid = cityid;
     }
 }
