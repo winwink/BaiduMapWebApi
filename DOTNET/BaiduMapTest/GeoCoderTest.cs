@@ -20,7 +20,7 @@ namespace BaiduMapTest
             };
             var req = new GeoCoderRequest(model);
             var resp = baiduClient.Execute(req);
-            resp.Status.ShouldBe(0);
+            resp.Status.ShouldBe(0); 
         }
     }
 }
